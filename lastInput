@@ -1,0 +1,55 @@
+
+<length(L)
+all L: L = empty-> length(L) = 0
+all L: (not L=empty) -> length(L) = 1+length(tail(L))>
+
+<nth(n,L)
+all L: all n: n = 1 and length(L)>0 -> nth(n,L) = head(L)
+all L: all n: 1=<n and n=<length(L) -> nth(n,L) = nth(n-1,tail(L))>
+
+<count(x,L)
+all x: all L: L = empty -> count(x,L) = 0
+all x: all L: head(L) = x -> count(x,L) = 1 + count(x,tail(L))
+all x: all L: (not head(L) = x) -> count(x,L) = count(x,tail(L))>
+
+<sorted(L) 
+All L: L = empty -> sorted(L)
+all L: length(L) = 1 ->  sorted(L)
+all L: length(L) => 2 -> sorted(L) <-> head(L) =< head(tail(L)) and sorted(tail(L))>
+
+<reverse(L)
+all L: L = empty -> reverse(L) = empty
+all L: (not L = empty) -> reverse(L) = reverse(tail(L)) ++ cons(head(L),empty)>
+
+<in(x,L) 
+all x: all L: L = empty -> not in(x,L) 
+all x: all L: in(x,L) <-> count(x,L) > 0>
+
+<min(L)
+all L: length(L) = 1 -> min(L) = head(L)
+all L: length(L) > 1 and head(L) =< head(tail(L)) -> min(L) = min(cons(head(L),tail(tail(L))))
+all L: length(L) > 1 and head(L) >  head(tail(L)) -> min(L) = min(tail(L))>
+
+
+
+
+list1 := [2,2,3,4,5,6,7,8,9]
+list2 := [22,22,22,22,22,22,3,4]
+
+length(list1)
+nth(2,list2)
+count(22,list2)
+
+sorted(list1)
+sorted(list2)
+
+reverse(list1)
+
+in(10,list1)
+in(9,list1)
+
+min(list2)
+
+
+lambda x,y: -x*y*^2 -2, 2,16
+

@@ -1,0 +1,15 @@
+-3 * 2 + 2
+3^3 
+-3 * 2 + 2 = -4 
+not -3*2 +2 = - 4 -> 1=2 
+not -3*2 +2 = - 4 -› 1=2 
+not -3*2 +2 = - 4 <-> 1=2 
+-3*2 +2 = - 4 <-> 1=2 
+False  and True 
+False  or True and 2=2 and False 
+s := [2, 18, 9, 22, 17, 24, 8, 12, 27]
+some x in s  x < 13
+all x in s x < 13
+s = []
+lambda y x: x % y, 4, 2
+if (lambda x: x% 3, 4) = 0, s := [3], else s := [1]

@@ -1,0 +1,36 @@
+def formatProgram(filename):
+    text = [] 
+    input = open(filename, 'r')
+    definitionBuilding = False
+    string = ""
+    
+    for line in input:
+        if len(line) > 1:
+            
+            
+            if line.startswith("<"):
+                definitionBuilding = True
+            print definitionBuilding   
+            if definitionBuilding:
+                
+                if line.endswith('>\n'):
+                    print "i made it here hHAHAHAHAH"
+                    string = string + line[:-3]+ ",>"
+                    print string + "this is about to be appended"
+                    text.append(string)
+                    string = ""
+                    definitionBuilding = False
+                    
+                string = string + line[:-1] + ','
+                print string
+                 
+            else:   
+                text.append(line)
+                
+    input.close()
+    output = open(filename, 'w') 
+    for line in text:
+        print line
+        output.write(line+ "\n")
+            
+    output.close()

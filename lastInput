@@ -1,4 +1,3 @@
-
 <length(L)
 all L: L = empty-> length(L) = 0
 all L: (not L=empty) -> length(L) = 1+length(tail(L))>
@@ -49,7 +48,4 @@ in(10,list1)
 in(9,list1)
 
 min(list2)
-
-
-lambda x,y: -x*y*^2 -2, 2,16
 

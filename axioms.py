@@ -1,4 +1,4 @@
-# see http://effbot.org/zone/simple-top-down-parsing.htm
+
 
 import inspect
 import re
@@ -16,7 +16,7 @@ global identifierSet
 global functionSet
 ifsToClose = 0
 identifierSet = []
-functionSet = ["(function y x)"]
+functionSet = []
 
 
 def parse(rbp=0):
@@ -71,7 +71,7 @@ class functionDefinitionToken:
     lbp = 10
     def __init__(self, id):
         self.id = id
-        print self.id  + "hi"
+        
     def nud(self):
         
         global token
@@ -89,9 +89,8 @@ class functionDefinitionToken:
         token = next() # advances past )
         self.string = self.string + ")"
         functionSet = []
-        functionSet.append(self.string[8:]) # ignores the define 
-        print functionSet
-        
+        functionSet.append(self.string[8:]) # ignores the (define 
+                
         token = next() # advances past comma
         
         self.string = self.string + " " + str(parse()) + ")"
@@ -104,7 +103,7 @@ class functionCallToken:
     lbp = 10
     def __init__(self, id):
         self.id = id
-        print self.id  + "hi"
+        
     def nud(self):
         global token
         self.string = "(" + self.id
@@ -298,9 +297,9 @@ class operatorAssignToken:
         return ":="
     def __repr__(self):
         global identifierSet
-        print str(self.first) in identifierSet
+        
         if str(self.first) in identifierSet:
-            print "hello"
+            
             return "(set! %s %s)" % (self.first, self.second)
         identifierSet.append(str(self.first))
         return "(define " + str(self.first) + " 0) (set! %s %s)" % (self.first, self.second)
@@ -500,7 +499,7 @@ def printTokens(program): # Used for debugging tokenizer
     for token in tokenPattern.findall(program):
         print token
         
-printTokens("all L: length(L) => 2 -> sorted(L) <-> head(L) =< head(tail(L)) and sorted(tail(L))")
+
 
 def tokenize(program):
     
@@ -531,14 +530,11 @@ def parseString(program):
     token = next()
     return str(parse())
 
-def verifyTestCases(listOfTestCases):
-    for case in listOfTestCases:
-        print ""
-        print case + " Parses to -> " + str(parseString(case))
+
         
 def formatProgram(filename):
     text = [] 
-    input = open(filename, 'r')
+    input = open(filename, 'r') 
     definitionBuilding = False
     string = ""
     
@@ -548,19 +544,19 @@ def formatProgram(filename):
             
             if line.startswith("<"):
                 definitionBuilding = True
-            print definitionBuilding   
+             
             if definitionBuilding:
                 
                 if line.endswith('>\n'):
-                    print "i made it here hHAHAHAHAH"
+                   
                     string = string + line[:-2]+ ",>\n"
-                    print string + "this is about to be appended"
+                    
                     text.append(string)
                     string = ""
                     definitionBuilding = False
                 else:
                     string = string + line[:-1] + ', '
-                print string
+                
                  
             else:   
                 text.append(line)
@@ -568,13 +564,13 @@ def formatProgram(filename):
     input.close()
     output = open(filename, 'w') 
     for line in text:
-        print line
+
         output.write(line+ "\n")
             
     output.close()
     
     
-print [x+y for x,y in ("hdsc"),(1,2,3,4,5,6,7,8,9,10,11,12,13)]
+
         
 def parseProgram(filename):
     text = [] 
@@ -671,7 +667,5 @@ if __name__ == '__main__':
 
 
 
-
-#print parseString("if (lambda x: x% 3, 4) = 0, s := [3], else s := [1,2]")
 
 
